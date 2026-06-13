@@ -1,0 +1,198 @@
+---
+---
+
+<section id="contact" class="py-24 md:py-32 px-6">
+  <div class="max-w-3xl mx-auto text-center">
+
+    <div class="reveal-fade-up">
+      <p class="text-accent-blue text-xs font-semibold uppercase tracking-[0.2em] mb-4">Contact</p>
+      <h2 class="font-heading font-bold text-3xl md:text-5xl text-text-primary mb-4">Let's Work Together</h2>
+      <p class="text-text-muted text-base max-w-lg mx-auto">
+        Open to freelance projects, internships, and full-time roles in digital marketing.
+      </p>
+    </div>
+
+    <!-- Contact Info Cards -->
+    <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 reveal-fade-up" style="--delay: 100ms;">
+      <a href="mailto:qazisultan121jm@gmail.com" class="glass rounded-2xl p-5 text-center glow-hover block">
+        <svg class="w-6 h-6 mx-auto text-accent-blue mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" />
+        </svg>
+        <p class="text-text-primary text-xs font-medium break-all">qazisultan121jm@gmail.com</p>
+        <button
+          id="copy-email"
+          class="mt-2 inline-flex items-center gap-1 text-accent-blue text-[11px] font-medium hover:underline"
+          aria-label="Copy email address"
+          onclick="event.preventDefault();"
+        >
+          <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+          </svg>
+          <span>Copy</span>
+        </button>
+      </a>
+
+      <a href="tel:+923173716978" class="glass rounded-2xl p-5 text-center glow-hover block">
+        <svg class="w-6 h-6 mx-auto text-accent-blue mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+        </svg>
+        <p class="text-text-primary text-xs font-medium">+92 317 3716978</p>
+        <p class="text-accent-blue text-[11px] font-medium mt-2">Tap to Call</p>
+      </a>
+
+      <a href="https://www.google.com/maps/search/Lahore+Punjab+Pakistan" target="_blank" rel="noopener noreferrer" class="glass rounded-2xl p-5 text-center glow-hover block">
+        <svg class="w-6 h-6 mx-auto text-accent-blue mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+        </svg>
+        <p class="text-text-primary text-xs font-medium">Lahore, Punjab, Pakistan</p>
+        <p class="text-accent-blue text-[11px] font-medium mt-2">View on Map</p>
+      </a>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="mt-16 reveal-fade-up" style="--delay: 200ms;">
+      <form
+        id="contact-form"
+        name="contact"
+        method="POST"
+        action="https://formspree.io/f/mwvzynql"
+        class="glass rounded-2xl p-6 md:p-10 text-left"
+      >
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div>
+            <label for="name" class="block stat-label mb-2">Your Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              placeholder="John Doe"
+              class="w-full bg-white/[0.04] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-text-primary placeholder:text-text-muted/40 focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue/30 transition-colors"
+            />
+          </div>
+          <div>
+            <label for="email" class="block stat-label mb-2">Your Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="john@example.com"
+              class="w-full bg-white/[0.04] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-text-primary placeholder:text-text-muted/40 focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue/30 transition-colors"
+            />
+          </div>
+        </div>
+
+        <div class="mt-5">
+          <label for="subject" class="block stat-label mb-2">Subject</label>
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            required
+            placeholder="Freelance Project Inquiry"
+            class="w-full bg-white/[0.04] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-text-primary placeholder:text-text-muted/40 focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue/30 transition-colors"
+          />
+        </div>
+
+        <div class="mt-5">
+          <label for="message" class="block stat-label mb-2">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            required
+            rows="5"
+            placeholder="Tell me about your project, goals, and timeline..."
+            class="w-full bg-white/[0.04] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-text-primary placeholder:text-text-muted/40 focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue/30 transition-colors resize-none"
+          ></textarea>
+        </div>
+
+        <div class="mt-6">
+          <button
+            id="submit-btn"
+            type="submit"
+            class="btn-glow relative z-10 w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-4 bg-accent-blue text-background font-semibold text-sm rounded-full transition-all duration-200 hover:bg-white hover:text-background"
+          >
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" />
+            </svg>
+            Send Message
+          </button>
+        </div>
+      </form>
+
+      <!-- Success Message -->
+      <div id="form-success" class="glass rounded-2xl p-10 text-center" style="display: none;">
+        <div class="w-16 h-16 mx-auto mb-5 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center">
+          <svg class="w-8 h-8 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        </div>
+        <h3 class="font-heading font-bold text-2xl text-text-primary mb-2">Message Sent!</h3>
+        <p class="text-green-400 text-base font-medium">Thanks! I'll get back to you within 24 hours.</p>
+        <button
+          id="send-another"
+          class="mt-6 inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-text-primary font-medium text-sm rounded-full transition-all duration-200 hover:border-accent-blue hover:text-accent-blue"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="1 4 1 10 7 10" /><path d="M3.51 15a9 9 0 102.13-9.36L1 10" />
+          </svg>
+          Send Another Message
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="mt-32 pt-8 border-t border-white/[0.06] text-center">
+    <p class="text-text-muted text-xs">© 2026 Qazi Sultan · Digital Marketing Specialist</p>
+  </footer>
+</section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const successMessage = document.getElementById('form-success');
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const sendAnother = document.getElementById('send-another');
+  const originalBtnHTML = submitBtn?.innerHTML || '';
+
+  if (form && successMessage && submitBtn) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      submitBtn.innerHTML = `<svg class="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-dasharray="30 70" stroke-linecap="round"/></svg> Sending...`;
+      submitBtn.disabled = true;
+
+      try {
+        const data = new FormData(form);
+
+        const response = await fetch('https://formspree.io/f/mwvzynql', {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' },
+        });
+
+        if (response.ok) {
+          form.style.display = 'none';
+          successMessage.style.display = 'block';
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch {
+        alert('Something went wrong. Please email me directly at qazisultan121jm@gmail.com');
+        submitBtn.innerHTML = originalBtnHTML;
+        submitBtn.disabled = false;
+      }
+    });
+  }
+
+  if (sendAnother && form && successMessage && submitBtn) {
+    sendAnother.addEventListener('click', () => {
+      form.reset();
+      form.style.display = 'block';
+      successMessage.style.display = 'none';
+      submitBtn.innerHTML = originalBtnHTML;
+      submitBtn.disabled = false;
+    });
+  }
+</script>

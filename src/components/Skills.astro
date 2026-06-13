@@ -1,0 +1,43 @@
+---
+const skills = [
+  { label: 'Meta Ads Manager', icon: 'M18 3H6a3 3 0 00-3 3v12a3 3 0 003 3h12a3 3 0 003-3V6a3 3 0 00-3-3z M12 8v8 M8 12h8' },
+  { label: 'Google Ads / SEM', icon: 'M12 2L2 7l10 5 10-5-10-5z M2 17l10 5 10-5 M2 12l10 5 10-5' },
+  { label: 'SEO Strategy', icon: 'M12 20V10 M18 20V4 M6 20v-4' },
+  { label: 'Ad Copywriting', icon: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z M14 2v6h6 M16 13H8 M16 17H8 M10 9H8' },
+  { label: 'Audience Targeting', icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2 M9 11a4 4 0 100-8 4 4 0 000 8z M23 21v-2a4 4 0 00-3-3.87 M16 3.13a4 4 0 010 7.75' },
+  { label: 'Campaign Analytics', icon: 'M18 20V10 M12 20V4 M6 20v-6' },
+  { label: 'Email Marketing', icon: 'M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z M22 6l-10 7L2 6' },
+  { label: 'E-commerce', icon: 'M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z M3 6h18 M16 10a4 4 0 01-8 0' },
+  { label: 'Lead Generation', icon: 'M22 12h-4l-3 9L9 3l-3 9H2' },
+  { label: 'Marketing Funnels', icon: 'M12 2v20 M2 12l4-4 4 4 M20 12l-4 4-4-4' },
+  { label: 'Social Media Marketing', icon: 'M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z' },
+  { label: 'Canva', icon: 'M12 19l7-7 3 3-7 7-3-3z M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z M2 2l7.586 7.586' },
+];
+---
+
+<section id="skills" class="py-24 md:py-32 px-6">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-16 reveal-fade-up">
+      <p class="text-accent-blue text-xs font-semibold uppercase tracking-[0.2em] mb-4">Skills</p>
+      <h2 class="font-heading font-bold text-3xl md:text-4xl text-text-primary">My Toolkit</h2>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {
+        skills.map((skill, i) => (
+          <div
+            class="glass rounded-2xl p-5 text-center glow-hover reveal-fade-up"
+            style={`--delay: ${i * 50}ms;`}
+          >
+            <svg class="w-7 h-7 mx-auto text-accent-blue mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d={skill.icon} />
+            </svg>
+            <p class="text-sm font-medium text-text-primary">{skill.label}</p>
+          </div>
+        ))
+      }
+    </div>
+
+  </div>
+</section>

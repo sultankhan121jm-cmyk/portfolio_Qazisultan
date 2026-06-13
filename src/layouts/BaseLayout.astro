@@ -1,0 +1,457 @@
+---
+import '@fontsource/montserrat/400.css';
+import '@fontsource/montserrat/600.css';
+import '@fontsource/montserrat/700.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Qazi Sultan — Digital Marketing Specialist',
+  description = 'Meta & Google certified digital marketer. Achieved 8.68% CTR — 3× industry average on a live Google Ads campaign.'
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="theme-color" content="#111110" />
+  <title>{title}</title>
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="canonical" href="https://qazi-sultan.vercel.app" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://qazi-sultan.vercel.app" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content="https://qazi-sultan.vercel.app/og-image.png" />
+  <meta property="og:site_name" content="Qazi Sultan Portfolio" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="https://qazi-sultan.vercel.app/og-image.png" />
+</head>
+<body class="bg-background text-text-primary font-body antialiased">
+
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-accent-blue focus:text-background focus:rounded-lg focus:text-base focus:font-semibold focus:outline-none">
+    Skip to content
+  </a>
+
+  <div id="page-loader" aria-hidden="true">
+    <div class="loader-logo">QS</div>
+  </div>
+
+  <div id="custom-cursor" aria-hidden="true"></div>
+
+  <div id="main-content">
+    <slot />
+  </div>
+
+  <script>
+    // ─── Page Loader ───
+    var loader = document.getElementById('page-loader');
+    if (loader) {
+      requestAnimationFrame(function() {
+        setTimeout(function() { loader.style.opacity = '0'; }, 1200);
+        setTimeout(function() { loader.remove(); }, 1700);
+      });
+    }
+
+    // ─── Custom Cursor ───
+    if (window.matchMedia('(hover: hover)').matches) {
+      var cursor = document.getElementById('custom-cursor');
+      if (cursor) {
+        var cx = -100, cy = -100, tx = -100, ty = -100;
+        document.addEventListener('mousemove', function(e) {
+          tx = e.clientX; ty = e.clientY;
+        }, { passive: true });
+        (function tick() {
+          cx += (tx - cx) * 0.15;
+          cy += (ty - cy) * 0.15;
+          cursor.style.transform = 'translate(' + (cx - 6) + 'px, ' + (cy - 6) + 'px)';
+          requestAnimationFrame(tick);
+        })();
+      }
+    }
+
+    // ─── Navbar ───
+    var nav = document.getElementById('navbar');
+    var sections = document.querySelectorAll('section[id]');
+    var navLinks = document.querySelectorAll('#nav-links a');
+
+    var navObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          navLinks.forEach(function(l) { l.classList.remove('text-text-primary'); l.classList.add('text-text-muted'); });
+          var active = document.querySelector('#nav-links a[href="#' + entry.target.id + '"]');
+          if (active) { active.classList.remove('text-text-muted'); active.classList.add('text-text-primary'); }
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(function(s) { navObserver.observe(s); });
+
+    var navScrolled = false;
+    window.addEventListener('scroll', function() {
+      var should = window.scrollY > 60;
+      if (should !== navScrolled) {
+        navScrolled = should;
+        if (nav) nav.classList.toggle('nav-scrolled', navScrolled);
+      }
+    }, { passive: true });
+
+    // ─── Reveal System ───
+    var revealEls = document.querySelectorAll('.reveal-fade-up, .reveal-fade-right, .reveal-fade-left');
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+    revealEls.forEach(function(el) { revealObserver.observe(el); });
+
+    // ─── Mobile Menu ───
+    var menuBtn = document.getElementById('menu-btn');
+    var mobileMenu = document.getElementById('mobile-menu');
+    var menuClose = document.getElementById('menu-close');
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', function() {
+        mobileMenu.classList.remove('translate-x-full');
+        mobileMenu.classList.add('translate-x-0');
+        if (menuClose) menuClose.focus();
+      });
+    }
+    if (menuClose && mobileMenu) {
+      menuClose.addEventListener('click', function() {
+        mobileMenu.classList.remove('translate-x-0');
+        mobileMenu.classList.add('translate-x-full');
+        if (menuBtn) menuBtn.focus();
+      });
+    }
+    if (mobileMenu) {
+      mobileMenu.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          mobileMenu.classList.remove('translate-x-0');
+          mobileMenu.classList.add('translate-x-full');
+          if (menuBtn) menuBtn.focus();
+        });
+      });
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('translate-x-0')) {
+        mobileMenu.classList.remove('translate-x-0');
+        mobileMenu.classList.add('translate-x-full');
+        if (menuBtn) menuBtn.focus();
+      }
+    });
+
+    // ─── Copy Email ───
+    var copyBtn = document.getElementById('copy-email');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function() {
+        navigator.clipboard.writeText('qazisultan121jm@gmail.com').then(function() {
+          var span = copyBtn.querySelector('span');
+          if (span) {
+            span.textContent = 'Copied!';
+            setTimeout(function() { span.textContent = 'Copy'; }, 2000);
+          }
+        });
+      });
+    }
+  </script>
+
+  <style is:global>
+    html { scroll-behavior: smooth; }
+    ::selection { background: #F9731633; color: #F5F5F5; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #111110; }
+    ::-webkit-scrollbar-thumb { background: #F9731644; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #F9731688; }
+
+    #page-loader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: #111110; display: flex;
+      align-items: center; justify-content: center;
+      transition: opacity 0.5s ease;
+    }
+    .loader-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem; font-weight: 700; color: #E2D9CC;
+      animation: loader-pulse 1s ease-in-out infinite alternate;
+      will-change: transform, opacity;
+    }
+    @keyframes loader-pulse {
+      from { opacity: 0.4; transform: scale(0.95); }
+      to   { opacity: 1;   transform: scale(1.05); }
+    }
+
+    @media (hover: hover) {
+      body { cursor: none; }
+      input, textarea, select, [contenteditable] { cursor: text; }
+      a, button, [role="button"], label[for] { cursor: none; }
+      #custom-cursor {
+        position: fixed; top: 0; left: 0;
+        width: 12px; height: 12px; border-radius: 50%;
+        background: #F97316;
+        box-shadow: 0 0 15px #F9731666;
+        mix-blend-mode: difference; pointer-events: none;
+        z-index: 9998; will-change: transform;
+        transition: width 0.2s ease, height 0.2s ease;
+      }
+    }
+    @media (hover: none) { #custom-cursor { display: none; } }
+
+    a:focus-visible, button:focus-visible, [role="button"]:focus-visible {
+      outline: 2px solid #F97316; outline-offset: 3px; border-radius: 6px;
+    }
+    a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
+    .glass:focus-within { border-color: rgba(249, 115, 22, 0.3); }
+
+    #navbar.nav-scrolled {
+      background: rgba(17, 17, 16, 0.85);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    }
+
+    .reveal-fade-up, .reveal-fade-right, .reveal-fade-left {
+      opacity: 0; will-change: transform, opacity;
+    }
+    .reveal-fade-up.revealed {
+      animation: reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation-delay: var(--delay, 0ms);
+    }
+    .reveal-fade-right.revealed {
+      animation: reveal-right 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation-delay: var(--delay, 0ms);
+    }
+    .reveal-fade-left.revealed {
+      animation: reveal-left 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation-delay: var(--delay, 0ms);
+    }
+    @keyframes reveal-up {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes reveal-right {
+      from { opacity: 0; transform: translateX(-40px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes reveal-left {
+      from { opacity: 0; transform: translateX(40px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal-fade-up, .reveal-fade-right, .reveal-fade-left {
+        opacity: 1; transform: none; will-change: auto;
+      }
+      .reveal-fade-up.revealed, .reveal-fade-right.revealed, .reveal-fade-left.revealed {
+        animation: none;
+      }
+    }
+
+    .glitch { position: relative; display: inline-block; }
+    .glitch::before, .glitch::after {
+      content: attr(data-text); position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%; overflow: hidden; will-change: transform;
+    }
+    .glitch::before {
+      color: #1f1910; z-index: -1; /* Dark warm shadow */
+      animation: glitch-1 3s infinite linear alternate-reverse;
+      clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    }
+    .glitch::after {
+      color: #E2D9CC; z-index: -1; /* Cream shadow */
+      animation: glitch-2 3s infinite linear alternate-reverse;
+      clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+    }
+    @keyframes glitch-1 {
+      0%, 90%  { transform: translate(0); }
+      92%      { transform: translate(-3px, -1px); }
+      94%      { transform: translate(3px, 1px); }
+      96%      { transform: translate(-2px, 0); }
+      98%, 100%{ transform: translate(0); }
+    }
+    @keyframes glitch-2 {
+      0%, 90%  { transform: translate(0); }
+      91%      { transform: translate(3px, 1px); }
+      93%      { transform: translate(-3px, -1px); }
+      95%      { transform: translate(2px, 0); }
+      97%      { transform: translate(-1px, 1px); }
+      100%     { transform: translate(0); }
+    }
+
+    .typing-container {
+      display: inline-block; height: 2.5rem;
+      overflow: hidden; vertical-align: bottom;
+    }
+    .typing-slider {
+      animation: typing-slide 9s ease-in-out infinite; will-change: transform;
+    }
+    .typing-slider span { display: block; height: 2.5rem; line-height: 2.5rem; }
+    @keyframes typing-slide {
+      0%, 28%  { transform: translateY(0); }
+      33%, 61% { transform: translateY(-2.5rem); }
+      66%, 94% { transform: translateY(-5rem); }
+      100%     { transform: translateY(0); }
+    }
+
+    .mesh-bg {
+      position: relative; background: #111110; overflow: hidden;
+    }
+    .mesh-bg::before {
+      content: ''; position: absolute; inset: -50%;
+      background:
+        radial-gradient(ellipse at 30% 40%, #1a1610 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 20%, #1f1c18 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, #181510 0%, transparent 50%);
+      animation: mesh-drift 20s ease-in-out infinite;
+      will-change: transform; pointer-events: none;
+    }
+    @keyframes mesh-drift {
+      0%, 100% { transform: translate(0%, 0%) scale(1); }
+      33%      { transform: translate(4%, -3%) scale(1.04); }
+      66%      { transform: translate(-3%, 4%) scale(1.02); }
+    }
+
+    .geo {
+      position: absolute; border: 1px solid rgba(249, 115, 22, 0.05);
+      opacity: 0.06; pointer-events: none; will-change: transform;
+    }
+    .geo-1 {
+      width: 300px; height: 300px; top: 15%; left: 5%;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      animation: geo-spin 25s linear infinite;
+    }
+    .geo-2 {
+      width: 200px; height: 200px; top: 60%; right: 8%;
+      border-radius: 50%;
+      animation: geo-spin 18s linear infinite reverse;
+    }
+    .geo-3 {
+      width: 150px; height: 150px; bottom: 20%; left: 15%;
+      transform: rotate(45deg);
+      animation: geo-spin 22s linear infinite;
+    }
+    @keyframes geo-spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .scroll-arrow {
+      animation: bounce-arrow 2s ease-in-out infinite;
+      will-change: transform, opacity;
+    }
+    @keyframes bounce-arrow {
+      0%, 100% { transform: translateY(0); opacity: 0.6; }
+      50%      { transform: translateY(10px); opacity: 1; }
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+
+    .glow-hover {
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      will-change: transform;
+    }
+    .glow-hover:hover {
+      border-color: rgba(249, 115, 22, 0.2);
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+      transform: translateY(-4px);
+    }
+
+    .gold-shimmer { position: relative; overflow: hidden; }
+    .gold-shimmer::before {
+      content: ''; position: absolute; inset: 0;
+      border-radius: inherit; padding: 1px;
+      background: linear-gradient(135deg, transparent 30%, #E2D9CC 50%, transparent 70%);
+      background-size: 200% 100%;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
+    }
+    .gold-shimmer:hover::before {
+      opacity: 1; animation: shimmer-move 1.5s ease infinite;
+    }
+    @keyframes shimmer-move {
+      from { background-position: -200% 0; }
+      to   { background-position: 200% 0; }
+    }
+
+    .timeline-line {
+      background: linear-gradient(to bottom, #F9731644, #1f1910, #F9731633);
+      box-shadow: 0 0 12px #F9731611;
+    }
+
+    .pulse-red {
+      animation: pulse-red 2s ease-in-out infinite; will-change: box-shadow;
+    }
+    @keyframes pulse-red {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
+      50%      { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+    }
+
+    .btn-glow { position: relative; overflow: hidden; }
+    .btn-glow::before {
+      content: ''; position: absolute; inset: -2px;
+      background: linear-gradient(135deg, #1f1910, #F97316, #1f1910);
+      border-radius: inherit; z-index: -1; opacity: 0;
+      transition: opacity 0.3s ease; filter: blur(15px); will-change: opacity;
+    }
+    .btn-glow:hover::before { opacity: 0.6; }
+
+      .stat-label {
+      color: #71717A; font-size: 0.75rem; 
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    .animate-spin { animation: spin 0.8s linear infinite; }
+  </style>
+  
+  <!-- COUNTER SCRIPT — is:inline prevents Astro from bundling/moving it -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function() {
+      var counters = document.querySelectorAll('[data-target]');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && !entry.target.dataset.done) {
+            entry.target.dataset.done = 'true';
+            var target = parseFloat(entry.target.dataset.target);
+            var isDecimal = entry.target.dataset.decimal === 'true';
+            var duration = 2000;
+            var start = performance.now();
+            function tick(now) {
+              var progress = Math.min((now - start) / duration, 1);
+              var ease = 1 - Math.pow(1 - progress, 3);
+              var val = target * ease;
+              entry.target.textContent = isDecimal
+                ? val.toFixed(2) + '%'
+                : Math.floor(val);
+              if (progress < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+          }
+        });
+      }, { threshold: 0.2 });
+      counters.forEach(function(el) { observer.observe(el); });
+    });
+  </script>
+</body>
+</html>
