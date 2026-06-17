@@ -2,38 +2,124 @@
 const skills = [
   { label: 'Meta Ads Manager', icon: 'M18 3H6a3 3 0 00-3 3v12a3 3 0 003 3h12a3 3 0 003-3V6a3 3 0 00-3-3z M12 8v8 M8 12h8' },
   { label: 'Google Ads / SEM', icon: 'M12 2L2 7l10 5 10-5-10-5z M2 17l10 5 10-5 M2 12l10 5 10-5' },
+  { label: 'Lead Generation', icon: 'M22 12h-4l-3 9L9 3l-3 9H2' },
+  { label: 'YouTube Display Ads', icon: 'M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z M9.75 15.02l5.75-3.27-5.75-3.27v6.54z' },
+  { label: 'Google Business Profile', icon: 'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z M12 13a3 3 0 100-6 3 3 0 000 6z' },
+  { label: 'Google Display Ads', icon: 'M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z' },
   { label: 'SEO Strategy', icon: 'M12 20V10 M18 20V4 M6 20v-4' },
   { label: 'Ad Copywriting', icon: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z M14 2v6h6 M16 13H8 M16 17H8 M10 9H8' },
   { label: 'Audience Targeting', icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2 M9 11a4 4 0 100-8 4 4 0 000 8z M23 21v-2a4 4 0 00-3-3.87 M16 3.13a4 4 0 010 7.75' },
   { label: 'Campaign Analytics', icon: 'M18 20V10 M12 20V4 M6 20v-6' },
   { label: 'Email Marketing', icon: 'M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z M22 6l-10 7L2 6' },
   { label: 'E-commerce', icon: 'M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z M3 6h18 M16 10a4 4 0 01-8 0' },
-  { label: 'Lead Generation', icon: 'M22 12h-4l-3 9L9 3l-3 9H2' },
   { label: 'Marketing Funnels', icon: 'M12 2v20 M2 12l4-4 4 4 M20 12l-4 4-4-4' },
   { label: 'Social Media Marketing', icon: 'M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z' },
   { label: 'Canva', icon: 'M12 19l7-7 3 3-7 7-3-3z M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z M2 2l7.586 7.586' },
 ];
 ---
 
-<section id="skills" class="py-24 md:py-32 px-6">
+<style>
+  /* ── Base Card ── */
+  .skill-card {
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+      transform 0.35s ease-out,
+      box-shadow 0.35s ease-out,
+      border-color 0.35s ease-out;
+  }
+
+  /* ── Elegant Idle Glow (Does NOT break reveal-fade-up) ── */
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translateX(-50%) scale(0.8);
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+    animation: ambient-glow 5s ease-in-out infinite;
+    animation-delay: var(--delay, 0ms);
+  }
+
+  @keyframes ambient-glow {
+    0%, 100% { opacity: 0; transform: translateX(-50%) scale(0.8); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.3); }
+  }
+
+  /* Keep icon/text above the glow layer */
+  .skill-card svg,
+  .skill-card p {
+    position: relative;
+    z-index: 1;
+  }
+
+  .skill-icon {
+    transition: transform 0.35s ease-out, filter 0.35s ease-out, color 0.35s ease-out;
+  }
+
+  .skill-label {
+    transition: color 0.35s ease-out, transform 0.35s ease-out;
+  }
+
+  /* ── UNIFIED HOVER/TOUCH STATE (Desktop & Mobile) ── */
+  .skill-card:hover,
+  .skill-card.is-touched {
+    transform: translateY(-6px) scale(1.03);
+    border-color: rgba(96, 165, 250, 0.35);
+    box-shadow: 0 20px 40px -12px rgba(96, 165, 250, 0.15);
+  }
+
+  .skill-card:hover .skill-icon,
+  .skill-card.is-touched .skill-icon {
+    transform: scale(1.15);
+    color: #F59E0B; /* Gold */
+    filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
+  }
+
+  .skill-card:hover .skill-label,
+  .skill-card.is-touched .skill-label {
+    transform: translateY(1px);
+    color: #60A5FA; /* Blue */
+  }
+</style>
+
+<section id="skills" class="py-16 px-4 md:py-24 md:px-6 lg:py-32">
   <div class="max-w-6xl mx-auto">
 
-    <div class="text-center mb-16 reveal-fade-up">
-      <p class="text-accent-blue text-xs font-semibold uppercase tracking-[0.2em] mb-4">Skills</p>
-      <h2 class="font-heading font-bold text-3xl md:text-4xl text-text-primary">My Toolkit</h2>
+    <div class="text-center mb-12 md:mb-16 reveal-fade-up">
+      <p class="text-accent-blue text-[10px] md:text-xs font-semibold uppercase tracking-[0.2em] mb-3 md:mb-4">Skills</p>
+      <h2 class="font-heading font-bold text-2xl md:text-3xl lg:text-4xl text-text-primary">My Toolkit</h2>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-4">
       {
         skills.map((skill, i) => (
           <div
-            class="glass rounded-2xl p-5 text-center glow-hover reveal-fade-up"
-            style={`--delay: ${i * 50}ms;`}
+            class="glass skill-card rounded-xl md:rounded-2xl p-4 md:p-5 text-center reveal-fade-up"
+            style={`--delay: ${i * 80}ms;`}
           >
-            <svg class="w-7 h-7 mx-auto text-accent-blue mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              class="skill-icon w-6 h-6 md:w-7 md:h-7 mx-auto text-accent-blue mb-2 md:mb-3"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <path d={skill.icon} />
             </svg>
-            <p class="text-sm font-medium text-text-primary">{skill.label}</p>
+            <p class="skill-label text-[11px] md:text-sm font-medium text-text-primary leading-tight">
+              {skill.label}
+            </p>
           </div>
         ))
       }
@@ -41,3 +127,20 @@ const skills = [
 
   </div>
 </section>
+
+<script>
+  // Syncs mobile tap to perfectly mimic the desktop hover effect
+  document.querySelectorAll('.skill-card').forEach(card => {
+    card.addEventListener('touchstart', () => {
+      // Clear any other tapped cards first
+      document.querySelectorAll('.skill-card.is-touched').forEach(c => c.classList.remove('is-touched'));
+      // Apply the effect
+      card.classList.add('is-touched');
+    }, { passive: true });
+
+    card.addEventListener('touchend', () => {
+      // Small delay so the user actually sees the lift before it drops
+      setTimeout(() => card.classList.remove('is-touched'), 200);
+    }, { passive: true });
+  });
+</script>

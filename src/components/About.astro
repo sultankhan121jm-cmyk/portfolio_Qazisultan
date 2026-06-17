@@ -7,19 +7,23 @@
     <div class="reveal-fade-right">
       <div class="mb-8 relative w-32 h-32 mx-auto lg:mx-0">
         <div class="absolute inset-0 rounded-full bg-accent-blue/20 blur-xl" aria-hidden="true"></div>
-        <img
-          src="/images/profile.jpeg"
-          alt="Qazi Sultan — Digital Marketing Specialist"
-          class="relative w-32 h-32 rounded-full object-cover border-2 border-accent-blue/40"
-          width="128"
-          height="128"
-        />
+        <picture>
+          <source srcset="/images/profile-128.webp 1x, /images/profile-256.webp 2x" type="image/webp">
+          <img
+            src="/images/profile-128.jpg"
+            alt="Qazi Sultan — Digital Marketing Specialist"
+            class="relative w-32 h-32 rounded-full object-cover border-2 border-accent-blue/40"
+            width="128"
+            height="128"
+            fetchpriority="high"
+          />
+        </picture>
       </div>
 
       <p class="text-accent-blue text-xs font-semibold uppercase tracking-[0.2em] mb-4 text-center lg:text-left">About Me</p>
       <h2 class="font-heading font-bold text-3xl md:text-4xl text-text-primary leading-tight mb-6 text-center lg:text-left">
         CS Student.<br />
-        <span class="text-accent-blue">Certified Marketer.</span>
+        <span class="text-accent-blue">Certified Marketer</span>
       </h2>
       <div class="space-y-4 text-text-muted text-base leading-relaxed text-center lg:text-left">
         <p>
@@ -40,8 +44,8 @@
         <p class="stat-label mt-2">Global Certifications</p>
       </div>
       <div class="glass rounded-2xl p-6 text-center glow-hover">
-        <p class="font-heading font-bold text-4xl text-accent-blue" data-target="1">0</p>
-        <p class="stat-label mt-2">Live Paid Campaign</p>
+        <p class="font-heading font-bold text-4xl text-accent-blue">RS <span data-target="42">0</span>K+</p>
+        <p class="stat-label mt-2">Ad Spend Managed</p>
       </div>
       <div class="glass rounded-2xl p-6 text-center glow-hover">
         <p class="font-heading font-bold text-4xl text-accent-gold" data-target="8.68" data-decimal="true">0</p>

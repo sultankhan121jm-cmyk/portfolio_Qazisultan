@@ -1,10 +1,21 @@
 ---
 ---
 
-<section class="relative w-full min-h-[100dvh] flex items-center justify-center overflow-hidden mesh-bg pt-24 md:pt-0">
-  <div class="geo geo-1" aria-hidden="true"></div>
-  <div class="geo geo-2" aria-hidden="true"></div>
-  <div class="geo geo-3" aria-hidden="true"></div> 
+<section class="relative w-full min-h-[100dvh] flex items-center justify-center overflow-hidden pt-24 md:pt-0">
+  
+  <!-- Video Background -->
+  <div class="absolute inset-0 w-full h-full overflow-hidden -z-10" aria-hidden="true">
+    <video 
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover"
+      src="/hero-bg.mp4" 
+      autoplay 
+      muted 
+      loop 
+      playsinline
+    ></video>
+    <!-- Dark overlay to ensure text pops against the video -->
+    <div class="absolute inset-0 bg-black/50"></div> 
+  </div>
 
   <div class="relative z-10 text-center px-6 max-w-4xl">
     <div style="animation: hero-fade-up 0.8s ease-out 0.3s both;">
@@ -26,9 +37,6 @@
       </div>
     </div>
 
-    <div class="mt-4 md:mt-6" style="animation: hero-fade-up 0.8s ease-out 0.85s both;">
-    </div>
-
     <div class="mt-4" style="animation: hero-fade-up 0.8s ease-out 1s both;">
       <p class="text-text-muted text-base italic font-body">
         I don't just run campaigns. I deliver results.
@@ -47,6 +55,7 @@
       </a>
       <a
         href="/resume.pdf"
+        download
         class="inline-flex items-center gap-2 px-8 py-3.5 border border-white/20 text-text-primary font-semibold text-base rounded-full transition-all duration-200 hover:border-text-primary hover:text-text-primary"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -58,7 +67,7 @@
   </div>
 
   <div class="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-arrow" aria-hidden="true">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6">
+    <svg class="text-accent-blue" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6">
       <line x1="12" y1="5" x2="12" y2="19" /><polyline points="19 12 12 19 5 12" />
     </svg>
   </div>

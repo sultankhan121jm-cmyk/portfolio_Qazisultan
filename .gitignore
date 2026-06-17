@@ -2,3 +2,16 @@
 .netlify
 
 .vercel
+
+# Dependencies
+node_modules/
+
+# Astro build output
+dist/
+
+# Astro cache
+.astro/
+
+# Environment variables
+.env
+.env.*

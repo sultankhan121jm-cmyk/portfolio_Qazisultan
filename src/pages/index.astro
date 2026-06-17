@@ -1,7 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
-import Hero from '../components/Hero.astro';
+
+// We import the new React spotlight component here
+import LithosHero from '../components/LithosHero.tsx';
+
 import About from '../components/About.astro';
 import Experience from '../components/Experience.astro';
 import Skills from '../components/Skills.astro';
@@ -13,7 +16,10 @@ import Contact from '../components/Contact.astro';
 <BaseLayout>
   <Navbar />
   <main>
-    <Hero />
+    <!-- We replaced your old Hero.astro with the new Lithos spotlight -->
+    <!-- The client:load is the magic word that makes the mouse effect work -->
+    <LithosHero client:load />
+    
     <About />
     <Experience />
     <Skills />
